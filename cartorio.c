@@ -140,87 +140,111 @@ int deleta()
 }
 int main() 
 {
-    int opcao=0;//definindo variaveis
+    
+    char senhadigitada[10]="a";
+    char logindigitado[10] = "a";
+    int comparacaosenha;
+    int comparacaologin;
 
-    int laco=1;
+    printf("##### Cartório EBAC #########\n\n");//inicio do menu
+    printf("Login administrador!!.\n\nDigite o login\n\n");
+    scanf("%s", logindigitado);
+    printf("Digite a senha:\n");
+    scanf("%s",senhadigitada);
 
-    for(laco=1;laco=1;)
+    comparacaosenha = strcmp(senhadigitada, "adm");
+    comparacaologin = strcmp(logindigitado, "adm");
+
+    if(comparacaosenha == 0||comparacaologin == 0)
     {
-
-    
-
-        setlocale(LC_ALL, "portuguese"); // determina a linguagem, basicamente é para converter acentos e etc...
-    
-        printf("##### Cartório EBAC #########\n\n");//inicio do menu
-        printf("Escolha a opção desejada do menu:\n\n");
-        printf("\t1 - Registrar nomes\n\n");
-        printf("\t2 - Consultar nomes\n\n");
-        printf("\t3 - Deletar nomes\n\n");
-        printf("\t4 - Sair do sistema\n\n");
-        printf("\topção:  ");//fim do menu
         
+            int opcao=0;//definindo variaveis
+            int laco=1;
 
-        scanf("%d", &opcao);//armazenando a opção do usuario
+            for(laco=1;laco=1;)
+            {
 
-        int c;
-        while ((c = getchar()) != '\n' && c != EOF) { }
+    
 
-        system("clear");
+                setlocale(LC_ALL, "portuguese"); // determina a linguagem, basicamente é para converter acentos e etc...
+    
+        
+                printf("Escolha a opção desejada do menu:\n\n");
+                printf("\t1 - Registrar nomes\n\n");
+                printf("\t2 - Consultar nomes\n\n");
+                printf("\t3 - Deletar nomes\n\n");
+                printf("\t4 - Sair do sistema\n\n");
+                printf("\topção:  ");//fim do menu
+            
 
-        switch(opcao)
-        {
+                scanf("%d", &opcao);//armazenando a opção do usuario
 
-            case 1:
-            registro();
-            break;
+                int c;
+                while ((c = getchar()) != '\n' && c != EOF) { }
 
-            case 2:
-            consulta();
-            break;
+                system("clear");
 
-            case 3:
-            deleta();
-            break;
+                switch(opcao)
+                {
 
-            case 4:
-            printf("Obrigado por utilizar o sistema!!\n\n");
-            return 0;
-            break;
+                    case 1:
+                    registro();
+                    break;
 
-            default:
-            printf("\nVocê escolheu uma opção invalida, tente novamente!\n\n");
-            getchar();
-            break;
+                    case 2:
+                    consulta();
+                    break;
 
+                    case 3:
+                    deleta();
+                    break;
+
+                    case 4:
+                    printf("Obrigado por utilizar o sistema!!\n\n");
+                    return 0;
+                    break;
+
+                    default:
+                    printf("\nVocê escolheu uma opção invalida, tente novamente!\n\n");
+                    getchar();
+                    break;
+
+              }
+           /*
+              if(opcao==1)//inicio da seleção
+              {
+                   printf("\nVoce escolheu registrar nomes!\n\n");
+                  system("pause");
+                }
+                if(opcao==2)
+                {
+                    printf("\nVoce escolheu consultar nomes!\n\n");
+                 system("pause");
+             }
+             if(opcao==3)
+             {
+                 printf("\nVoce escolheu deletar nomes!\n\n");
+                   system("pause");
+                }
+                if(opcao>=4)
+                {
+                    printf("\nEssa opção não existe!\n\n");
+                 system("pause");
+              }
+              if(opcao<=0)
+                {
+                 printf("\nEssa opção não existe!\n\n");
+                    system("pause");
+                    }//fim da seleção
+                    
+                printf("Esse software é de livre uso dos alunos\n\n");
+                */
+            }
+
+        }else{
+             printf("login ou senha incorretos!!.\nTente novamente!!\n\n");
         }
-    /*
-        if(opcao==1)//inicio da seleção
-        {
-            printf("\nVoce escolheu registrar nomes!\n\n");
-            system("pause");
-        }
-        if(opcao==2)
-        {
-            printf("\nVoce escolheu consultar nomes!\n\n");
-            system("pause");
-        }
-        if(opcao==3)
-        {
-            printf("\nVoce escolheu deletar nomes!\n\n");
-            system("pause");
-        }
-        if(opcao>=4)
-        {
-            printf("\nEssa opção não existe!\n\n");
-            system("pause");
-        }
-        if(opcao<=0)
-        {
-            printf("\nEssa opção não existe!\n\n");
-            system("pause");
-        }//fim da seleção
-                
-        printf("Esse software é de livre uso dos alunos\n\n");
-        */
-    }
+
+
+        
 }  
