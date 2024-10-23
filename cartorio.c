@@ -3,25 +3,27 @@
 #include <locale.h>\\ biblioteca de alocações de texto por região
 #include<string.h>\\biblioteca para chamar a variavel string.
 
-int registro()
+int registro()//função responsavel por cadastrar usuarios
 {
+    //inicio da criação string/variavel
     char arquivo[40];
     char cpf[40];
     char nome[40];
     char sobrenome[40];
     char cargo[40];
+    //fim da criação string/variavel
 
-    printf("Digite o cpf a ser cadastrado: ");
-    scanf("%s", cpf);
+    printf("Digite o cpf a ser cadastrado: ");//coletando informção
+    scanf("%s", cpf);//"%" refere-se a string/ armazena a informação do usuario
 
     strcpy(arquivo, cpf);//utilizado para copiar os valores das strings
 
     FILE *file;//cria o arquivo
-    file = fopen(arquivo, "w");//cria o arquivo essas duas primeiras linhas de código uma chama a função FILE para criação do arquivo e a outra para criação.
-    fprintf(file, cpf);//salva o valor da variavel e guarda as informções no arquivo.
+    file = fopen(arquivo, "w");//cria o arquivo e o "w" sinifica criar
+    fprintf(file, cpf);//salva o valor da variavel e guarda as informações no arquivo.
     fclose(file);//fecha o arquivo
 
-    file = fopen(arquivo, "a");//estou abrindo para adicionar alguma informação no arquivo
+    file = fopen(arquivo, "a");//estou abrindo para adicionar alguma informação no arquivo, "a" significa que vou atulizar alguma infomação.
     fprintf(file, ",");//adicionando e salvando informação
     fclose(file);//informações salvas fechando o arquivo.
 
@@ -80,13 +82,13 @@ int consulta()
     setlocale(LC_ALL, ("portuguese"));
 
 
-    printf("Digite o cpf a ser consultado: ");
+    printf("Digite o cpf a ser consultado: ");//recebendo qual usuario a ser consultado
     scanf("%s", cpf);
 
     FILE *file;
-    file = fopen(cpf, "r");
+    file = fopen(cpf, "r");//consultando se esta no sistema com"r"
 
-    if(file == NULL)
+    if(file == NULL)//passando ao usuario se realmente a no sistema o cpf digitado senão uma resposta negativa
     {
         printf("Não foi possivel abrir o arquivo, não localizado!!\n\n");  
          int c;
@@ -96,7 +98,7 @@ int consulta()
         return 1;
     }
     
-    while(fgets(conteudo, 200, file) != NULL)
+    while(fgets(conteudo, 200, file) != NULL)//fazendo a busca no banco de dados, e retornando a resposta se positiva.
     {
         printf("\nEssas são as informações do usuario, cpf: ");
         printf("%s", conteudo);
@@ -140,76 +142,81 @@ int deleta()
 }
 int main() 
 {
-    
-    char senhadigitada[10]="a";
+
+
+    printf("##### Cartório EBAC #########\n\n");//inicio do menu
+    char senhadigitada[10]="a";//criando variavel
     char logindigitado[10] = "a";
     int comparacaosenha;
     int comparacaologin;
+    int tentenovamente = 0;
 
-    printf("##### Cartório EBAC #########\n\n");//inicio do menu
-    printf("Login administrador!!.\n\nDigite o login\n\n");
-    scanf("%s", logindigitado);
-    printf("Digite a senha:\n");
-    scanf("%s",senhadigitada);
-
-    comparacaosenha = strcmp(senhadigitada, "adm");
-    comparacaologin = strcmp(logindigitado, "adm");
-
-    if(comparacaosenha == 0||comparacaologin == 0)
+    for(tentenovamente=1;tentenovamente+1;tentenovamente++)
     {
+
+        printf("Login administrador!!.\n\nDigite o login\n\n");
+        scanf("%s", logindigitado);
+        printf("Digite a senha:\n");
+        scanf("%s",senhadigitada);
+
+        comparacaosenha = strcmp(senhadigitada, "adm");//criando comparação para validação na estrutura cond.
+        comparacaologin = strcmp(logindigitado, "adm");
+
+        if(comparacaosenha == 0||comparacaologin == 0)
+        {
         
-            int opcao=0;//definindo variaveis
-            int laco=1;
+                int opcao=0;//definindo variaveis
+                int laco=1;
 
-            for(laco=1;laco=1;)
-            {
-
-    
-
-                setlocale(LC_ALL, "portuguese"); // determina a linguagem, basicamente é para converter acentos e etc...
-    
-        
-                printf("Escolha a opção desejada do menu:\n\n");
-                printf("\t1 - Registrar nomes\n\n");
-                printf("\t2 - Consultar nomes\n\n");
-                printf("\t3 - Deletar nomes\n\n");
-                printf("\t4 - Sair do sistema\n\n");
-                printf("\topção:  ");//fim do menu
-            
-
-                scanf("%d", &opcao);//armazenando a opção do usuario
-
-                int c;
-                while ((c = getchar()) != '\n' && c != EOF) { }
-
-                system("clear");
-
-                switch(opcao)
+                for(laco=1;laco=1;)
                 {
 
-                    case 1:
-                    registro();
-                    break;
+    
 
-                    case 2:
-                    consulta();
-                    break;
+                    setlocale(LC_ALL, "portuguese"); // determina a linguagem, basicamente é para converter acentos e etc...
+    
+                    printf("########Tela inicial#######\n\n");
+                    printf("Escolha a opção desejada do menu:\n\n");
+                    printf("\t1 - Registrar nomes\n\n");
+                    printf("\t2 - Consultar nomes\n\n");
+                    printf("\t3 - Deletar nomes\n\n");
+                    printf("\t4 - Sair do sistema\n\n");
+                    printf("\topção:  ");//fim do menu
+            
 
-                    case 3:
-                    deleta();
-                    break;
+                    scanf("%d", &opcao);//armazenando a opção do usuario
 
-                    case 4:
-                    printf("Obrigado por utilizar o sistema!!\n\n");
-                    return 0;
-                    break;
+                    int c;
+                    while ((c = getchar()) != '\n' && c != EOF) { }
 
-                    default:
-                    printf("\nVocê escolheu uma opção invalida, tente novamente!\n\n");
-                    getchar();
-                    break;
+                    system("clear");
 
-              }
+                    switch(opcao)
+                    {
+
+                        case 1:
+                        registro();
+                        break;
+
+                        case 2:
+                        consulta();
+                        break;
+
+                        case 3:
+                        deleta();
+                        break;
+
+                        case 4:
+                        printf("Obrigado por utilizar o sistema!!\n\n");
+                        return 0;
+                        break;
+
+                        default:
+                        printf("\nVocê escolheu uma opção invalida, tente novamente!\n\n");
+                        getchar();
+                        break;
+
+                }
            /*
               if(opcao==1)//inicio da seleção
               {
@@ -240,11 +247,9 @@ int main()
                 printf("Esse software é de livre uso dos alunos\n\n");
                 */
             }
-
-        }else{
-             printf("login ou senha incorretos!!.\nTente novamente!!\n\n");
-        }
-
-
-        
+            system("clear");
+            }else {
+                printf("login ou senha incorretos!!.\nTente novamente!!\n\n");
+            }
+    }        
 }  
